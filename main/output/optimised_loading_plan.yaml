@@ -1,0 +1,25 @@
+aircraft: Airbus A350-1000
+optimisation_status: "WITHIN LIMITS \u2713"
+final_cg_pct_mac: 25.86
+cg_fwd_limit: 20.0
+cg_aft_limit: 35.0
+cg_target: 28.0
+cg_within_limits: true
+total_reward: 23.92
+loading_plan:
+- item: Spare parts kit
+  weight_kg: 1090.7
+  zone: AFT_03
+  cg_after_placement: 25.524
+- item: Medical equipment
+  weight_kg: 293.5
+  zone: AFT_01
+  cg_after_placement: 25.589
+- item: Fuel equipment
+  weight_kg: 295.2
+  zone: AFT_01
+  cg_after_placement: 25.654
+- item: Spare tyres
+  weight_kg: 596.0
+  zone: AFT_02
+  cg_after_placement: 25.86
