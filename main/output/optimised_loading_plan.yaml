@@ -1,29 +1,36 @@
 aircraft: Airbus A350-1000
+input_manifest: input_file/my_flight.yaml
 status: WITHIN LIMITS
 cg_within_limits: true
-final_cg_pct_mac: 22.726
+base_cg_pct_mac: 22.227
+final_cg_pct_mac: 22.735
 cg_fwd_limit: 20.0
 cg_aft_limit: 35.0
 cg_target: 28.0
-total_reward: 22.33
+total_reward: 22.39
+weight_breakdown:
+  empty_aircraft_kg: 155000.0
+  passengers_kg: 26350.0
+  fuel_kg: 65000.0
+  cargo_kg: 3300.0
 loading_plan:
-- item: Catering supplies
-  weight_kg: 311.5
-  assigned_zone: AFT_02
-  cg_after_placement: 22.299
-- item: Engine crate
-  weight_kg: 830.5
+- item: Engine Parts
+  weight_kg: 950.0
   assigned_zone: AFT_04
-  cg_after_placement: 22.627
-- item: General freight
-  weight_kg: 434.2
+  cg_after_placement: 22.602
+- item: Medical Supplies
+  weight_kg: 420.0
   assigned_zone: AFT_03
-  cg_after_placement: 22.763
-- item: Ground support equip
-  weight_kg: 606.1
+  cg_after_placement: 22.733
+- item: Spare Avionics
+  weight_kg: 1000.0
   assigned_zone: AFT_01
-  cg_after_placement: 22.854
-- item: Catering supplies 2
-  weight_kg: 258.6
-  assigned_zone: FWD_01
-  cg_after_placement: 22.726
+  cg_after_placement: 22.883
+- item: Mail Bags
+  weight_kg: 180.0
+  assigned_zone: AFT_02
+  cg_after_placement: 22.924
+- item: Ground Equipment
+  weight_kg: 750.0
+  assigned_zone: FWD_04
+  cg_after_placement: 22.735
