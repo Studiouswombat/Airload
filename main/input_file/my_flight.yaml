@@ -1,0 +1,15 @@
+cargo:
+  - name: Engine Parts
+    weight_kg: 950.0
+
+  - name: Medical Supplies
+    weight_kg: 420.0
+
+  - name: Spare Avionics
+    weight_kg: 1000.0
+
+  - name: Mail Bags
+    weight_kg: 180.0
+
+  - name: Ground Equipment
+    weight_kg: 750.0

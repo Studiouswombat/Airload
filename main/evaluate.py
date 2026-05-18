@@ -1,27 +1,38 @@
 """
 evaluate.py
 ===========
-Loads a trained RL agent and tests it on cargo manifests.
+Loads a trained RL agent and runs it on your own cargo manifest.
 Outputs the optimised loading plan as a YAML file.
 
 How to run:
 -----------
-    python evaluate.py
+    # use your own manifest
+    python evaluate.py --manifest input/my_flight.yaml
 
-Output:
--------
-    output/optimised_loading_plan.yaml
+    # or use a random training manifest
+    python evaluate.py
 """
 
 import yaml
 import os
+import argparse
 import numpy as np
 from stable_baselines3 import PPO
 from env.cargo_env import CargoEnv
 from airload_person1_core_v2 import A3501000ReferenceModel
 
+# ── argument parser ────────────────────────────────────────────────────────────
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--manifest",
+    type=str,
+    default=None,
+    help="Path to your own cargo manifest YAML file (optional)"
+)
+args = parser.parse_args()
+
 # ── settings ──────────────────────────────────────────────────────────────────
-MODEL_PATH   = "models/best_model.zip"    # best model saved during training
+MODEL_PATH   = "models/best_model.zip"
 MANIFEST_DIR = "data/manifests"
 OUTPUT_DIR   = "output"
 
@@ -33,19 +44,38 @@ model = PPO.load(MODEL_PATH)
 
 # ── create environment ─────────────────────────────────────────────────────────
 env = CargoEnv(manifest_dir=MANIFEST_DIR)
-obs, _ = env.reset()
 
-# ── run one episode with the trained agent ─────────────────────────────────────
-print(f"\nRunning optimised loading...")
-print(f"Cargo items to load: {len(env.cargo_items)}")
-print("-" * 50)
+# ── load manifest ──────────────────────────────────────────────────────────────
+if args.manifest:
+    # use your own manifest file
+    print(f"Using your manifest: {args.manifest}")
+    with open(args.manifest, "r") as f:
+        custom_manifest = yaml.safe_load(f)
+
+    # inject your cargo into the environment
+    obs, _ = env.reset()
+    env.cargo_items      = custom_manifest["cargo"]
+    env.current_item_idx = 0
+    env.zone_weights     = {zone_id: 0.0 for zone_id in env.zone_ids}
+    env.current_cg       = A3501000ReferenceModel.x_to_percent_mac(
+        env.empty_aircraft.empty_cg_x_m
+    )
+    obs = env._get_observation()
+else:
+    # use a random manifest from training data
+    print("No manifest provided — using a random training manifest")
+    obs, _ = env.reset()
+
+# ── run optimisation ───────────────────────────────────────────────────────────
+print(f"\nCargo items to load : {len(env.cargo_items)}")
+print(f"Available zones     : {env.n_zones}")
+print("-" * 55)
 
 done         = False
 total_reward = 0
-assignments  = []   # track where each item was placed
+assignments  = []
 
 while not done:
-    # agent picks the best zone deterministically
     action, _ = model.predict(obs, deterministic=True)
     zone_id   = env.zone_ids[action]
     item      = env.cargo_items[env.current_item_idx]
@@ -54,41 +84,46 @@ while not done:
     total_reward += reward
 
     assignments.append({
-        "item":    item["name"],
-        "weight_kg": item["weight_kg"],
-        "zone":    zone_id,
+        "item":               item["name"],
+        "weight_kg":          item["weight_kg"],
+        "assigned_zone":      zone_id,
         "cg_after_placement": round(info["cg_pct_mac"], 3),
     })
 
-    print(f"  {item['name']:30s} ({item['weight_kg']:6.1f} kg)  →  {zone_id:10s}  |  CG: {info['cg_pct_mac']:.2f}% MAC")
+    status_icon = "✓" if info["cg_within_limits"] else "✗"
+    print(
+        f"  {item['name']:30s} "
+        f"({item['weight_kg']:6.1f} kg)  →  "
+        f"{zone_id:10s}  |  "
+        f"CG: {info['cg_pct_mac']:.2f}% MAC {status_icon}"
+    )
 
 # ── final summary ──────────────────────────────────────────────────────────────
 ref    = A3501000ReferenceModel
-status = "WITHIN LIMITS ✓" if info["cg_within_limits"] else "OUTSIDE LIMITS ✗"
+within = info["cg_within_limits"]
+status = "WITHIN LIMITS" if within else "OUTSIDE LIMITS"
 
-print("-" * 50)
+print("-" * 55)
 print(f"Final CG      : {info['cg_pct_mac']:.2f}% MAC")
-print(f"CG limits     : {ref.CG_FORWARD_LIMIT_PERCENT_MAC}% — {ref.CG_AFT_LIMIT_PERCENT_MAC}% MAC")
+print(f"CG envelope   : {ref.CG_FORWARD_LIMIT_PERCENT_MAC}% (fwd) — {ref.CG_AFT_LIMIT_PERCENT_MAC}% (aft) MAC")
 print(f"CG target     : {ref.CG_TARGET_PERCENT_MAC}% MAC")
 print(f"Status        : {status}")
-print(f"Total reward  : {total_reward:.2f}")
-
-# ── build output ───────────────────────────────────────────────────────────────
-output = {
-    "aircraft": "Airbus A350-1000",
-    "optimisation_status": status,
-    "final_cg_pct_mac": round(info["cg_pct_mac"], 3),
-    "cg_fwd_limit": ref.CG_FORWARD_LIMIT_PERCENT_MAC,
-    "cg_aft_limit": ref.CG_AFT_LIMIT_PERCENT_MAC,
-    "cg_target":    ref.CG_TARGET_PERCENT_MAC,
-    "cg_within_limits": info["cg_within_limits"],
-    "total_reward": round(total_reward, 2),
-    "loading_plan": assignments,
-}
 
 # ── save output YAML ───────────────────────────────────────────────────────────
+output = {
+    "aircraft":           "Airbus A350-1000",
+    "status":             status,
+    "cg_within_limits":   within,
+    "final_cg_pct_mac":   round(info["cg_pct_mac"], 3),
+    "cg_fwd_limit":       ref.CG_FORWARD_LIMIT_PERCENT_MAC,
+    "cg_aft_limit":       ref.CG_AFT_LIMIT_PERCENT_MAC,
+    "cg_target":          ref.CG_TARGET_PERCENT_MAC,
+    "total_reward":       round(total_reward, 2),
+    "loading_plan":       assignments,
+}
+
 out_path = os.path.join(OUTPUT_DIR, "optimised_loading_plan.yaml")
 with open(out_path, "w") as f:
     yaml.dump(output, f, default_flow_style=False, sort_keys=False)
 
-print(f"\nOptimised loading plan saved to: {out_path}")
+print(f"\nOptimised loading plan saved → {out_path}")
