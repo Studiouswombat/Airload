@@ -1,0 +1,46 @@
+status: WITHIN LIMITS
+feasible: true
+current_cg_pct_mac: 23.136
+projected_final_cg: 24.353
+cg_within_limits: true
+cg_fwd_limit: 20.0
+cg_aft_limit: 35.0
+cg_target: 28.0
+locked_ulds:
+- name: AKE2045
+  weight_kg: 850.0
+  actual_zone: FWD_01
+  status: LOCKED
+- name: AKE2045
+  weight_kg: 850.0
+  actual_zone: FWD_01
+  status: LOCKED
+- name: AKE2190
+  weight_kg: 920.0
+  actual_zone: AFT_01
+  status: LOCKED
+- name: AKE2311
+  weight_kg: 1100.0
+  actual_zone: FWD_02
+  status: LOCKED
+optimal_remaining_plan:
+- name: Engine Parts
+  weight_kg: 950.0
+  assigned_zone: AFT_03
+  cg_after_placement: 24.255
+- name: Medical Supplies
+  weight_kg: 420.0
+  assigned_zone: AFT_02
+  cg_after_placement: 24.402
+- name: Spare Avionics
+  weight_kg: 1000.0
+  assigned_zone: FWD_04
+  cg_after_placement: 24.0
+- name: Mail Bags
+  weight_kg: 180.0
+  assigned_zone: FWD_03
+  cg_after_placement: 23.906
+- name: Ground Equipment
+  weight_kg: 750.0
+  assigned_zone: AFT_04
+  cg_after_placement: 24.353
