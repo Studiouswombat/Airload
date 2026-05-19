@@ -1,0 +1,30 @@
+status: WITHIN LIMITS
+feasible: true
+current_cg_pct_mac: 25.395
+projected_final_cg: 22.681
+cg_within_limits: true
+cg_fwd_limit: 20.0
+cg_aft_limit: 35.0
+cg_target: 28.0
+locked_ulds:
+- name: AKE2045
+  weight_kg: 850.0
+  actual_zone: AFT_01
+  status: LOCKED
+- name: AKE2190
+  weight_kg: 920.0
+  actual_zone: AFT_01
+  status: LOCKED
+optimal_remaining_plan:
+- name: AKE2311
+  weight_kg: 1100.0
+  assigned_zone: AFT_02
+  cg_after_placement: 22.622
+- name: AKE2442
+  weight_kg: 780.0
+  assigned_zone: AFT_04
+  cg_after_placement: 22.927
+- name: AKE2555
+  weight_kg: 500.0
+  assigned_zone: FWD_01
+  cg_after_placement: 22.681

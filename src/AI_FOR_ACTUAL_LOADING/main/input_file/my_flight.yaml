@@ -1,0 +1,11 @@
+cargo:
+  - name: AKE2045
+    weight_kg: 850.0
+  - name: AKE2190
+    weight_kg: 920.0
+  - name: AKE2311
+    weight_kg: 1100.0
+  - name: AKE2442
+    weight_kg: 780.0
+  - name: AKE2555
+    weight_kg: 500.0
