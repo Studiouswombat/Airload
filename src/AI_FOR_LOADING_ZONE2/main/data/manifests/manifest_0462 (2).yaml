@@ -1,0 +1,63 @@
+aircraft:
+  name: Airbus A350-1000
+  operating_empty_weight_kg: 155000.0
+  empty_cg_x_m: 27.5
+  cg_fwd_limit_pct_mac: 20.0
+  cg_aft_limit_pct_mac: 35.0
+  cg_target_pct_mac: 28.0
+  lemac_x_m: 25.0
+  mac_length_m: 10.0
+zones:
+- zone_id: FWD_01
+  hold: Forward Hold
+  x_position_m: 15.0
+  max_weight_kg: 1200
+- zone_id: FWD_02
+  hold: Forward Hold
+  x_position_m: 17.0
+  max_weight_kg: 1200
+- zone_id: FWD_03
+  hold: Forward Hold
+  x_position_m: 19.0
+  max_weight_kg: 1200
+- zone_id: FWD_04
+  hold: Forward Hold
+  x_position_m: 21.0
+  max_weight_kg: 1200
+- zone_id: AFT_01
+  hold: Aft Hold
+  x_position_m: 31.0
+  max_weight_kg: 1200
+- zone_id: AFT_02
+  hold: Aft Hold
+  x_position_m: 33.0
+  max_weight_kg: 1200
+- zone_id: AFT_03
+  hold: Aft Hold
+  x_position_m: 35.0
+  max_weight_kg: 1200
+- zone_id: AFT_04
+  hold: Aft Hold
+  x_position_m: 37.0
+  max_weight_kg: 1200
+- zone_id: BULK_01
+  hold: Bulk Hold
+  x_position_m: 40.0
+  max_weight_kg: 600
+cargo:
+- name: Avionics boxes
+  weight_kg: 1171.1
+- name: Spare parts kit
+  weight_kg: 935.4
+- name: Spare tyres
+  weight_kg: 226.3
+- name: Engine crate
+  weight_kg: 866.9
+- name: General freight
+  weight_kg: 932.1
+- name: General freight 2
+  weight_kg: 383.8
+- name: Engine crate 2
+  weight_kg: 413.0
+- name: Spare parts kit 2
+  weight_kg: 1150.2
