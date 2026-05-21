@@ -20,7 +20,7 @@ import os
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.callbacks import EvalCallback, CheckpointCallback
-from AI_FOR_ACTUAL_LOADING.main.env.cargo_env import CargoEnv
+from env.cargo_env import CargoEnv
 
 # ── settings ──────────────────────────────────────────────────────────────────
 MANIFEST_DIR  = "data/manifests"
