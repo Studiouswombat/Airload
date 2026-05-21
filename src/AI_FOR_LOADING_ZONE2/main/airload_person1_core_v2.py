@@ -219,8 +219,8 @@ class A3501000ReferenceModel:
     # These values are prototype assumptions only.
     # Real aircraft CG limits depend on certified aircraft manuals,
     # aircraft configuration, loading condition, and airline procedures.
-    CG_FORWARD_LIMIT_PERCENT_MAC = 20.0
-    CG_TARGET_PERCENT_MAC = 28.0
+    CG_FORWARD_LIMIT_PERCENT_MAC = 26.0
+    CG_TARGET_PERCENT_MAC = 30.0
     CG_AFT_LIMIT_PERCENT_MAC = 35.0
 
     # --------------------------------------------------------
