@@ -1,0 +1,111 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AIRLoad  —  Flight Plan  (my_flightplan.yaml)
+# Airbus A350-1000  ·  Replace my_flight.yaml with this file
+#
+# Usage:
+#   python dashboard7.py --plan input_file/my_flightplan.yaml
+#   python evaluate.py   --manifest input_file/my_flightplan.yaml
+#
+# All keys are read by dashboard7.py.  Values you are most likely to edit
+# are marked  ← EDIT.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+flight:
+  flight_number:    "SQ 126"          # ← EDIT  (for display only)
+  origin:           "SIN"             # ← EDIT  IATA code
+  destination:      "KUL"             # ← EDIT  IATA code
+  flight_hours:     1.25              # ← EDIT  estimated block hours (decimal)
+  alternate_hours:  0.5              # ← EDIT  fuel reserve for alternate (hours)
+
+# ── Passengers ────────────────────────────────────────────────────────────────
+# The A350-1000 in 3-class config holds up to 369 pax.
+# Standard weight assumptions per EASA/IATA:
+#   adult (incl. carry-on) : 95 kg
+#   checked baggage total is accounted for in cargo below, not per-pax.
+passengers:
+  count:            250               # ← EDIT  total souls on board
+  avg_weight_kg:    95.0              # standard EASA all-in pax mass (kg)
+  # Cabin crew are included in OEW (standard); do not add here.
+
+# ── Fuel ──────────────────────────────────────────────────────────────────────
+# Fuel added at departure gate (take-off fuel).
+# Typical A350-1000 on ~14 h sector: 95,000–115,000 kg.
+# Breakdown for information; dashboard uses fuel_added_kg as the single source.
+fuel:
+  fuel_added_kg:    4_610           # ← EDIT  total fuel loaded at gate (kg)
+  trip_fuel_est_kg:  2_200          # ← EDIT  estimated trip burn (informational)
+  contingency_kg:    110           # ← EDIT  5 % contingency of trip fuel
+  alternate_fuel_kg: 1_100           # ← EDIT  fuel to reach alternate airport
+  final_reserve_kg:  1_200           # ← EDIT  30 min holding at 1,500 ft
+  taxi_fuel_kg:      200           # ← EDIT  pre-departure taxi burn
+  # fuel_added_kg should equal the sum of all above items (approximately).
+
+  # Fuel burn rate used for CG migration calculation.
+  # If omitted, dashboard derives this from trip_fuel_est_kg / flight_hours.
+  # Override here for higher fidelity (kg per flight hour):
+  burn_rate_kg_per_hr: 6_963       # uncomment to override auto-calculation
+
+  # Wing centre-tank CG arm (metres from nose datum) — same as physics core.
+  wing_tank_cg_x_m: 27.5
+
+# ── Aircraft empty state ──────────────────────────────────────────────────────
+# These mirror A3501000ReferenceModel and are read for cross-check.
+# Do not change unless you have a different aircraft variant.
+aircraft:
+  name:                      "Airbus A350-1000"
+  operating_empty_weight_kg: 155_000
+  empty_cg_x_m:              26.0
+  lemac_x_m:                 25.0
+  mac_length_m:              10.0
+  cg_fwd_limit_pct_mac:      20.0
+  cg_aft_limit_pct_mac:      35.0
+  cg_target_pct_mac:         28.0
+
+# ── Cargo ─────────────────────────────────────────────────────────────────────
+# List every cargo item.  Zone assignment is done by the dashboard / RL agent.
+# weight_kg: actual ULD or shipment gross weight.
+cargo:
+  # =====================================================================
+  # ORIGINAL MANIFEST EXAMPLES
+  # =====================================================================
+  - name: Engine Parts
+    weight_kg: 8500.0
+
+  - name: Medical Supplies
+    weight_kg: 500.0
+
+  - name: Spare Avionics
+    weight_kg: 4000.0
+
+  - name: Mail Bags
+    weight_kg: 700.0
+
+  - name: Ground Equipment
+    weight_kg: 1500.0
+
+  # =====================================================================
+  # 8 NEW LOGICAL HIGH-DENSITY COMMERCIAL ADDITIONS
+  # =====================================================================
+  - name: Pharmaceuticals
+    weight_kg: 1200.0
+
+  - name: E-Commerce Goods
+    weight_kg: 2800.0
+
+  - name: Perishable Foods
+    weight_kg: 1650.0
+
+  - name: Diplomatic Cargo
+    weight_kg: 350.0
+
+  - name: Aircraft Spare Tire
+    weight_kg: 950.0
+
+  - name: Luxury Consumer Goods
+    weight_kg: 1100.0
+
+  - name: Oil & Gas Valves
+    weight_kg: 3400.0
+
+  - name: Express Courier Documents
+    weight_kg: 600.0

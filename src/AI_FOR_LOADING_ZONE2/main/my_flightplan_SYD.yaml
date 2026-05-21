@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AIRLoad  —  Flight Plan  (my_flightplan_SYD.yaml)
+# Airbus A350-1000  ·  Generated Flight Plan Target Manifest
+# ═══════════════════════════════════════════════════════════════════════════════
+
+flight:
+  flight_number:    "SQ 211"
+  origin:           "SIN"
+  destination:      "SYD"
+  flight_hours:     7.5
+  alternate_hours:  0.75
+
+passengers:
+  count:            280
+  avg_weight_kg:    95.0
+
+fuel:
+  fuel_added_kg:    61500
+  trip_fuel_est_kg: 48750
+  contingency_kg:    2450
+  alternate_fuel_kg: 6000
+  final_reserve_kg:  2800
+  taxi_fuel_kg:      1500
+  burn_rate_kg_per_hr: 6500
+  wing_tank_cg_x_m: 27.5
+
+aircraft:
+  name:                      "Airbus A350-1000"
+  operating_empty_weight_kg: 155000
+  empty_cg_x_m:              26.0
+  lemac_x_m:                 25.0
+  mac_length_m:              10.0
+  cg_fwd_limit_pct_mac:      20.0
+  cg_aft_limit_pct_mac:      35.0
+  cg_target_pct_mac:         28.0
+
+cargo:
+  - name: Mining Equipment Spares
+    weight_kg: 7200.0
+
+  - name: Medical Diagnostic Imaging Kits
+    weight_kg: 3800.0
+
+  - name: Heavy Machinery Valves
+    weight_kg: 4600.0
+
+  - name: Printed Publication Pallets
+    weight_kg: 1900.0
+
+  - name: Computer Server Hardware
+    weight_kg: 3100.0
+
+  - name: Agricultural Testing Arrays
+    weight_kg: 1500.0
+

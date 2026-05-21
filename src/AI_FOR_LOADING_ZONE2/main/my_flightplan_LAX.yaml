@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AIRLoad  —  Flight Plan  (my_flightplan_LAX.yaml)
+# Airbus A350-1000  ·  Generated Flight Plan Target Manifest
+# ═══════════════════════════════════════════════════════════════════════════════
+
+flight:
+  flight_number:    "SQ 38"
+  origin:           "SIN"
+  destination:      "LAX"
+  flight_hours:     15.5
+  alternate_hours:  0.75
+
+passengers:
+  count:            280
+  avg_weight_kg:    95.0
+
+fuel:
+  fuel_added_kg:    121000
+  trip_fuel_est_kg: 103850
+  contingency_kg:    5200
+  alternate_fuel_kg: 7700
+  final_reserve_kg:  2800
+  taxi_fuel_kg:      1450
+  burn_rate_kg_per_hr: 6700
+  wing_tank_cg_x_m: 27.5
+
+aircraft:
+  name:                      "Airbus A350-1000"
+  operating_empty_weight_kg: 155000
+  empty_cg_x_m:              26.0
+  lemac_x_m:                 25.0
+  mac_length_m:              10.0
+  cg_fwd_limit_pct_mac:      20.0
+  cg_aft_limit_pct_mac:      35.0
+  cg_target_pct_mac:         28.0
+
+cargo:
+  - name: Consumer Electronics Consolidation
+    weight_kg: 8500.0
+
+  - name: Biotech Lab Instrumentation
+    weight_kg: 3100.0
+
+  - name: Aerospace Castings
+    weight_kg: 4500.0
+
+  - name: E-Commerce Priority Small Parcels
+    weight_kg: 2600.0
+
+  - name: Fine Art Exhibition Panels
+    weight_kg: 1800.0
+
+  - name: Telecom Router Frameworks
+    weight_kg: 2200.0
+

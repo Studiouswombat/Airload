@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AIRLoad  —  Flight Plan  (my_flightplan_BKK.yaml)
+# Airbus A350-1000  ·  Generated Flight Plan Target Manifest
+# ═══════════════════════════════════════════════════════════════════════════════
+
+flight:
+  flight_number:    "SQ 708"
+  origin:           "SIN"
+  destination:      "BKK"
+  flight_hours:     2.0
+  alternate_hours:  0.75
+
+passengers:
+  count:            280
+  avg_weight_kg:    95.0
+
+fuel:
+  fuel_added_kg:    22000
+  trip_fuel_est_kg: 12500
+  contingency_kg:    700
+  alternate_fuel_kg: 4500
+  final_reserve_kg:  2800
+  taxi_fuel_kg:      1500
+  burn_rate_kg_per_hr: 6250
+  wing_tank_cg_x_m: 27.5
+
+aircraft:
+  name:                      "Airbus A350-1000"
+  operating_empty_weight_kg: 155000
+  empty_cg_x_m:              26.0
+  lemac_x_m:                 25.0
+  mac_length_m:              10.0
+  cg_fwd_limit_pct_mac:      20.0
+  cg_aft_limit_pct_mac:      35.0
+  cg_target_pct_mac:         28.0
+
+cargo:
+  - name: Electronic Components
+    weight_kg: 6500.0
+
+  - name: Automotive Assemblies
+    weight_kg: 4800.0
+
+  - name: Textile Machinery Parts
+    weight_kg: 3500.0
+
+  - name: Chilled Seafood Packets
+    weight_kg: 2200.0
+
+  - name: Pharmaceutical Supplies
+    weight_kg: 1800.0
+
+  - name: Industrial Fasteners
+    weight_kg: 2500.0
+

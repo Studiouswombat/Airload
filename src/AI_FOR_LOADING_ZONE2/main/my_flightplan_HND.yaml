@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AIRLoad  —  Flight Plan  (my_flightplan_HND.yaml)
+# Airbus A350-1000  ·  Generated Flight Plan Target Manifest
+# ═══════════════════════════════════════════════════════════════════════════════
+
+flight:
+  flight_number:    "SQ 634"
+  origin:           "SIN"
+  destination:      "HND"
+  flight_hours:     6.5
+  alternate_hours:  0.75
+
+passengers:
+  count:            280
+  avg_weight_kg:    95.0
+
+fuel:
+  fuel_added_kg:    54000
+  trip_fuel_est_kg: 42250
+  contingency_kg:    2150
+  alternate_fuel_kg: 5300
+  final_reserve_kg:  2800
+  taxi_fuel_kg:      1500
+  burn_rate_kg_per_hr: 6500
+  wing_tank_cg_x_m: 27.5
+
+aircraft:
+  name:                      "Airbus A350-1000"
+  operating_empty_weight_kg: 155000
+  empty_cg_x_m:              26.0
+  lemac_x_m:                 25.0
+  mac_length_m:              10.0
+  cg_fwd_limit_pct_mac:      20.0
+  cg_aft_limit_pct_mac:      35.0
+  cg_target_pct_mac:         28.0
+
+cargo:
+  - name: Semiconductor Wafers
+    weight_kg: 5500.0
+
+  - name: Precision Optical Glass
+    weight_kg: 3200.0
+
+  - name: Lithium Battery Packs
+    weight_kg: 4200.0
+
+  - name: Tropical Orchids (Premium)
+    weight_kg: 1500.0
+
+  - name: High-End Audio Equipment
+    weight_kg: 2800.0
+
+  - name: Robotic Servo Motors
+    weight_kg: 3900.0
+
